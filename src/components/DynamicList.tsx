@@ -1,3 +1,4 @@
+
 import { useShoppingList } from "./ShoppingListContext"
 import { MouseEvent } from "react"
 
@@ -25,7 +26,7 @@ export default function DynamicList({ data, error, isLoading }: { data: string[]
     }
 
     return (
-        <ul className="flex flex-col gap-1 overflow-y-scroll z-10">
+        <ul className="flex flex-col absolute gap-1 overflow-y-scroll z-10 max-h-36 w-full bg-white">
             { renderOptions() }
         </ul>
     )
