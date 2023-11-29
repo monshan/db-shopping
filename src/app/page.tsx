@@ -7,10 +7,8 @@ import ShoppingList from '@/components/ShoppingList'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-
-export type ListItems = {
+export type ListItem = {
   name: string,
-  quantity: number,
   isComplete: boolean
 }
 
@@ -24,9 +22,11 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center pt-20 min-h-screen">
       <h1 className='text-5xl'>My Shopping List</h1>
-      <input type="text" className="border-2 border-solid border-stone-800 p-2 mt-8" onChange={(e) => setQuery(e.target.value)} />
-      {/* <DynamicList {...queryResults}/> */}
-      <ShoppingList />
+      <div>
+        <input type="text" className="border-2 border-solid border-stone-800 p-2 mt-8" onChange={(e) => setQuery(e.target.value)} />
+        {/* <DynamicList {...queryResults}/> */}
+        <ShoppingList />
+      </div>
     </main>
   )
 }

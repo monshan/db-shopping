@@ -1,11 +1,11 @@
 "use client"
 
 import React, { useContext, createContext, useState } from "react"
-import { ListItems } from "@/app/page"
+import { ListItem } from "@/app/page"
 
 type ShoppingListContextType = {
-    listItems: ListItems,
-    setListItems: React.Dispatch<React.SetStateAction<ListItems>>
+    listItems: ListItem[],
+    setListItems: React.Dispatch<React.SetStateAction<ListItem[]>>
 }
 
 type ShoppingListContextProps = {
@@ -15,8 +15,7 @@ type ShoppingListContextProps = {
 export const ShoppingListContextTheme = createContext<ShoppingListContextType | null>(null)
 
 export default function ShoppingListContext({ children }: ShoppingListContextProps) {
-    // DUMMY STATE
-    const [listItems, setListItems] = useState<Array<ListItems>>([{ name: "apple", quantity: 1, isComplete: false }])
+    const [listItems, setListItems] = useState<ListItem[]>([])
     
     return (
         <ShoppingListContextTheme.Provider value={{ listItems, setListItems }}>
@@ -27,9 +26,9 @@ export default function ShoppingListContext({ children }: ShoppingListContextPro
 
 export function useShoppingList() {
     const context = useContext(ShoppingListContextTheme)
-    if (context === undefined) {
+    if (!context) {
         throw new Error("useShoppingList must be used within a ShoppingListContext")
     }
 
-    return context
+    return context;
 }
