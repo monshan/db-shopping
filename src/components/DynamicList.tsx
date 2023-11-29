@@ -1,10 +1,13 @@
 import { useShoppingList } from "./ShoppingListContext"
+import { MouseEvent } from "react"
 
 export default function DynamicList({ data, error, isLoading }: { data: string[] | undefined, error: Error, isLoading: boolean }) {
     const { listItems, setListItems } = useShoppingList()
 
-    const clickHandler = (e) => {
-        setListItems([...listItems, { name: e.target.dataset.name, isComplete: false }])
+    const clickHandler = (e: MouseEvent<HTMLElement>) => {
+        const target = e.target as HTMLElement;
+        const name = target.getAttribute("data-name") || ""
+        setListItems([...listItems, { name, isComplete: false }])
     }
 
     const renderOptions = () => {
