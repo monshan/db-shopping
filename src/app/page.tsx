@@ -15,7 +15,7 @@ export type ListItem = {
 
 export default function Home() {
   const [query, setQuery] = useState('')
-  const queryResults = useSWR(() => { return query.length > 1 && `https://api.frontendeval.com/fake/food/${query}`}, fetcher, { dedupingInterval: 500 })
+  const queryResults = useSWR<string[]>(() => { return query.length > 1 && `https://api.frontendeval.com/fake/food/${query}`}, fetcher, { dedupingInterval: 500 })
 
   // const inputHandler = (e) => setQuery(e.target.value)
     
@@ -24,7 +24,7 @@ export default function Home() {
       <h1 className='text-5xl'>My Shopping List</h1>
       <div>
         <input type="text" className="border-2 border-solid border-stone-800 p-2 mt-8" onChange={(e) => setQuery(e.target.value)} />
-        {/* <DynamicList {...queryResults}/> */}
+        <DynamicList {...queryResults}/>
         <ShoppingList />
       </div>
     </main>
