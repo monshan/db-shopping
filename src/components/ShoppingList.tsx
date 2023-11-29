@@ -1,11 +1,14 @@
 import React from "react";
 import ShoppingListItem from "./ShoppingListItem";
-import { ListItems } from "@/app/page";
+import { useShoppingList } from "./ShoppingListContext";
+import { ListItemProps } from "@/app/page";
 
-export default function ShoppingList({ listItems, setListItems }: { listItems: ListItems, setListItems: Function }) {
+export default function ShoppingList() {
+    const { listItems } = useShoppingList()
+    
     return (
         <ul className="w-52">
-            { Object.entries(listItems).map(([item, itemProps]) => <ShoppingListItem listItems={listItems} item={item} {...itemProps} setListItems={setListItems} />) }
+            { Object.entries(listItems).map(([item, itemProps]) => <ShoppingListItem item={item} {...itemProps} />) }
         </ul>
     );
 }

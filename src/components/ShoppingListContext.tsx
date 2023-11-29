@@ -15,7 +15,8 @@ type ShoppingListContextProps = {
 export const ShoppingListTheme = createContext<ShoppingListContextType | null>(null)
 
 export default function ShoppingListContext({ children }: ShoppingListContextProps) {
-    const [listItems, setListItems] = useState<ListItems>({})
+    // DUMMY DATA
+    const [listItems, setListItems] = useState<ListItems>({ "milk": {quantity: 1, isComplete: false }})
     
     return (
         <ShoppingListTheme.Provider value={{ listItems, setListItems }}>

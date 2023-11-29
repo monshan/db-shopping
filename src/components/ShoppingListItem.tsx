@@ -1,8 +1,6 @@
 "use client"
 
-import { ListItems } from "@/app/page"
-
-export default function ShoppingListItem({ item, quantity, isComplete, setListItems, listItems }: { item: string, quantity: number, isComplete: boolean, setListItems: Function, listItems: ListItems}) {
+export default function ShoppingListItem({ item, quantity, isComplete}) {
     const increaseQuantity = () => {
         listItems[item].quantity++
         setListItems({...listItems})
