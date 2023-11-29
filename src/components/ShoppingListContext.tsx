@@ -12,21 +12,21 @@ type ShoppingListContextProps = {
     children: React.ReactNode
 }
 
-export const ShoppingListTheme = createContext<ShoppingListContextType | null>(null)
+export const ShoppingListContextTheme = createContext<ShoppingListContextType | null>(null)
 
 export default function ShoppingListContext({ children }: ShoppingListContextProps) {
-    // DUMMY DATA
-    const [listItems, setListItems] = useState<ListItems>({ "milk": {quantity: 1, isComplete: false }})
+    // DUMMY STATE
+    const [listItems, setListItems] = useState<Array<ListItems>>([{ name: "apple", quantity: 1, isComplete: false }])
     
     return (
-        <ShoppingListTheme.Provider value={{ listItems, setListItems }}>
+        <ShoppingListContextTheme.Provider value={{ listItems, setListItems }}>
             {children}
-        </ShoppingListTheme.Provider>
+        </ShoppingListContextTheme.Provider>
     )
 }
 
 export function useShoppingList() {
-    const context = useContext(ShoppingListTheme)
+    const context = useContext(ShoppingListContextTheme)
     if (context === undefined) {
         throw new Error("useShoppingList must be used within a ShoppingListContext")
     }

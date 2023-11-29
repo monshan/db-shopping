@@ -7,13 +7,11 @@ import ShoppingList from '@/components/ShoppingList'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-export type ListItemProps = {
-    quantity: number,
-    isComplete: boolean
-}
 
 export type ListItems = {
-  [key: string]: ListItemProps
+  name: string,
+  quantity: number,
+  isComplete: boolean
 }
 
 
